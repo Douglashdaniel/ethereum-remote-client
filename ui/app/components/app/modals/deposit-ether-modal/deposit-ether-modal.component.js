@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
-import { getNetworkDisplayName } from '../../../../../../app/scripts/controllers/network/util'
+import { getNetworkDisplayName, getNetworkID } from '../../../../../../app/scripts/controllers/network/util'
 import Button from '../../../ui/button'
 
 export default class DepositEtherModal extends Component {
@@ -27,7 +27,7 @@ export default class DepositEtherModal extends Component {
     this.props.showAccountDetailModal()
   }
 
-  renderRow ({
+  renderRow({
     logo,
     title,
     text,
@@ -74,11 +74,12 @@ export default class DepositEtherModal extends Component {
     )
   }
 
-  render () {
+  render() {
     const { network, toFaucet } = this.props
-
-    const isTestNetwork = ['3', '4', '5', '42'].find((n) => n === network)
     const networkName = getNetworkDisplayName(network)
+    const networkID = getNetworkID(network)
+    const isTestNetwork = ['3', '4', '5', '42'].find((n) => n === networkID)
+
 
     return (
       <div
@@ -123,7 +124,7 @@ export default class DepositEtherModal extends Component {
               title: this.context.t('testFaucet'),
               text: this.faucetRowText(networkName),
               buttonLabel: this.context.t('getEther'),
-              onButtonClick: () => toFaucet(network),
+              onButtonClick: () => toFaucet(networkID),
               hide: !isTestNetwork,
             })}
           </div>

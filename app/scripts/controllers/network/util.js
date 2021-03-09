@@ -1,6 +1,7 @@
-import { NETWORK_TO_NAME_MAP } from './enums'
+import { NETWORK_TO_NAME_MAP, NETWORK_TO_ID_MAP } from './enums'
 
 export const getNetworkDisplayName = (key) => NETWORK_TO_NAME_MAP[key]
+export const getNetworkID = (key) => NETWORK_TO_ID_MAP[key]
 
 export function formatTxMetaForRpcResult (txMeta) {
   return {
